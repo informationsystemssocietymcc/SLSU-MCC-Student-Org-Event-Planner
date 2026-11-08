@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SLSU MCC Student Organizations Calendar of Activities – Officers</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2A4D'/%3E%3Crect x='10' y='16' width='44' height='38' rx='6' fill='%23fff'/%3E%3Crect x='10' y='16' width='44' height='11' rx='5' fill='%23EB6834'/%3E%3Ccircle cx='24' cy='40' r='4' fill='%231F2A4D'/%3E%3C/svg%3E">
+<script>try{var t=localStorage.getItem("seop.theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <style>
 :root{
-  --navy:#1F2A4D; --navy2:#2C3B6B; --orange:#EB6834; --sky:#8CCBF2; --bg:#F5F3EE; --card:#fff; --ink:#1E2433; --mute:#667085; --line:#E3E0D8;
+  --head:#1F2A4D; --navy:#1F2A4D; --navy2:#2C3B6B; --orange:#EB6834; --sky:#8CCBF2; --bg:#F5F3EE; --card:#fff; --ink:#1E2433; --mute:#667085; --line:#E3E0D8;
   --input:#FFF6CC; --red:#C8372D; --redbg:#FDECEA; --amber:#B26A00; --amberbg:#FFF1D6; --green:#2E7D4F; --greenbg:#E4F4EA;
   --blue:#2F5DA8; --bluebg:#E6EEFA; --teal:#127A78; --tealbg:#DFF3F1; --violet:#6A4BA8; --violetbg:#EEE8F8; --grey:#6B7280; --greybg:#EEF0F3;
   --radius:14px; --shadow:0 1px 2px rgba(31,42,77,.06),0 6px 18px rgba(31,42,77,.06);
@@ -28,7 +29,7 @@ h1,h2,h3{margin:0;line-height:1.2}
 .tabs{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
 .tab{background:transparent;border:0;color:#dfe5ff;padding:9px 15px;border-radius:999px;cursor:pointer;font-weight:600}
 .tab:hover{background:rgba(255,255,255,.1)}
-.tab[aria-current="page"]{background:#fff;color:var(--navy)}
+.tab[aria-current="page"]{background:#fff;color:var(--head)}
 .sync{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#dfe5ff}
 .dot{width:9px;height:9px;border-radius:50%;background:#f0b429;display:inline-block}
 .dot.live{background:#3ecf8e}.dot.err{background:#ff6b5e}.dot.busy{background:#8ab4ff;animation:pulse 1s infinite}
@@ -46,7 +47,7 @@ main{padding:22px 0 44px;flex:1}
 .btn:hover{background:var(--navy2)}
 .btn.orange{background:var(--orange);border-color:var(--orange)}
 .btn.orange:hover{background:#d85a29}
-.btn.ghost{background:#fff;color:var(--navy);border-color:var(--line)}
+.btn.ghost{background:#fff;color:var(--head);border-color:var(--line)}
 .btn.ghost:hover{background:#f3f1eb}
 .btn.danger{background:#fff;color:var(--red);border-color:#f0b9b4}
 .btn.danger:hover{background:var(--redbg)}
@@ -62,7 +63,7 @@ label{display:block;font-weight:600;font-size:13px;margin-bottom:4px}
 
 /* cards */
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
-.card h2{font-size:16px;margin-bottom:12px;color:var(--navy)}
+.card h2{font-size:16px;margin-bottom:12px;color:var(--head)}
 .card h2 small{font-weight:400;color:var(--mute);font-size:12.5px;margin-left:6px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -72,7 +73,7 @@ label{display:block;font-weight:600;font-size:13px;margin-bottom:4px}
 .toolbar .f{min-width:200px;flex:1;max-width:300px}
 .toolbar .grow{flex:1}
 .pagehead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
-.pagehead h2{font-size:22px;color:var(--navy)}
+.pagehead h2{font-size:22px;color:var(--head)}
 .pagehead .sub{color:var(--mute)}
 
 /* tiles */
@@ -80,7 +81,7 @@ label{display:block;font-weight:600;font-size:13px;margin-bottom:4px}
 .tile{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 14px 12px;box-shadow:var(--shadow);border-top:4px solid var(--navy)}
 .tile.o{border-top-color:var(--orange)}.tile.g{border-top-color:var(--green)}.tile.r{border-top-color:var(--red)}.tile.b{border-top-color:var(--blue)}.tile.t{border-top-color:var(--teal)}
 .tile .l{font-size:12.5px;color:var(--mute);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
-.tile .n{font-size:32px;font-weight:700;color:var(--navy);line-height:1.15;margin-top:2px}
+.tile .n{font-size:32px;font-weight:700;color:var(--head);line-height:1.15;margin-top:2px}
 .tile .d{font-size:12.5px;color:var(--mute);margin-top:2px}
 
 /* chips */
@@ -98,12 +99,12 @@ label{display:block;font-weight:600;font-size:13px;margin-bottom:4px}
 .list li{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
 .list li:last-child{border-bottom:0}
 .list .date{flex:0 0 58px;text-align:center;background:var(--bg);border-radius:10px;padding:4px 0;line-height:1.1}
-.list .date b{display:block;font-size:20px;color:var(--navy)}
+.list .date b{display:block;font-size:20px;color:var(--head)}
 .list .date span{font-size:11px;text-transform:uppercase;color:var(--mute);font-weight:700}
 .list .main{flex:1;min-width:0}
 .list .main b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .list .main small{color:var(--mute)}
-.list .go{background:none;border:0;cursor:pointer;color:var(--navy);padding:6px;border-radius:8px}
+.list .go{background:none;border:0;cursor:pointer;color:var(--head);padding:6px;border-radius:8px}
 .list .go:hover{background:var(--bg)}
 .empty{color:var(--mute);padding:26px 8px;text-align:center;background:var(--bg);border-radius:10px;font-size:14px}
 
@@ -111,14 +112,14 @@ label{display:block;font-weight:600;font-size:13px;margin-bottom:4px}
 svg{width:100%;height:auto;display:block}
 svg .grid{stroke:#e8e5de;stroke-width:1}
 svg .axis{fill:var(--mute);font-size:11px}
-svg .val{fill:var(--navy);font-size:11px;font-weight:700}
+svg .val{fill:var(--head);font-size:11px;font-weight:700}
 svg .bar{fill:var(--orange)}
 .hbars{display:flex;flex-direction:column;gap:7px}
 .hrow,.prow{display:grid;grid-template-columns:minmax(80px,150px) 1fr 84px;gap:10px;align-items:center;font-size:13px}
 .hl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}
 .ht{display:block;background:#eeece6;border-radius:6px;height:12px;overflow:hidden}
 .ht i{display:block;height:100%;background:var(--navy);border-radius:6px}
-.hrow b,.prow b{text-align:right;color:var(--navy)}
+.hrow b,.prow b{text-align:right;color:var(--head)}
 .prow b{white-space:nowrap}.prow b em{display:block;font-style:normal;color:var(--mute);font-weight:600;font-size:12px}
 .pb{display:flex;flex-direction:column;gap:3px}
 .pb .ht{height:8px}
@@ -160,7 +161,7 @@ td.num,th.num{text-align:right}
 .rowbtns{display:flex;gap:6px;justify-content:flex-end}
 
 /* dialog */
-dialog{border:0;border-radius:18px;padding:0;width:min(640px,94vw);box-shadow:0 20px 60px rgba(20,25,50,.35);max-height:92vh}
+dialog{background:var(--card);color:var(--ink);border:0;border-radius:18px;padding:0;width:min(640px,94vw);box-shadow:0 20px 60px rgba(20,25,50,.35);max-height:92vh}
 dialog::backdrop{background:rgba(20,28,55,.5)}
 .dlg-h{background:var(--navy);color:#fff;padding:14px 20px;border-bottom:4px solid var(--sky);display:flex;align-items:center}
 .dlg-h h3{font-size:18px}
@@ -271,22 +272,59 @@ dialog::backdrop{backdrop-filter:blur(3px)}
 @media (max-width:620px){.bg3d .a{width:320px;height:320px}.bg3d .b{width:300px;height:300px}.bg3d .c,.bg3d .d{display:none}}
 @media (prefers-reduced-motion:reduce){.bg3d i{animation:none}}
 
-/* ================= background style switch: glow (above) or flowing waves ================= */
+/* ================= background styles: network (canvas) / glow / plain ================= */
+.bg3d canvas{display:none;position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 100%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 100%)}
+.bg3d.network canvas{display:block}
 .bg3d:not(.glow)::before,.bg3d:not(.glow) i{display:none}
-.bg3d .wv,.bg3d .dots{display:none}
-.bg3d.waves .wv,.bg3d.waves .dots{display:block}
-.bg3d .wv{position:absolute;left:0;bottom:0;width:200%;height:48vh;max-height:520px;animation:wvMove var(--d) linear infinite;will-change:transform}
-.bg3d .wv path{vector-effect:non-scaling-stroke}
-.bg3d .wv.w1{--d:70s;height:56vh;opacity:1}
-.bg3d .wv.w2{--d:52s;animation-direction:reverse;height:44vh}
-.bg3d .wv.w3{--d:40s;height:34vh}
-.bg3d .wv.w4{--d:90s;height:62vh}
-@keyframes wvMove{to{transform:translate3d(-50%,0,0)}}
-.bg3d .dots{position:absolute;right:0;top:0;width:46vw;height:46vh;background-image:radial-gradient(circle,rgba(31,42,77,.22) 1.3px,transparent 1.8px);background-size:24px 24px;-webkit-mask-image:radial-gradient(ellipse at 100% 0%,#000 0%,transparent 70%);mask-image:radial-gradient(ellipse at 100% 0%,#000 0%,transparent 70%)}
 .bgbtn{margin-left:6px;background:rgba(255,255,255,.12);color:#dfe5ff;border:1px solid rgba(140,203,242,.45);border-radius:999px;padding:3px 11px;font-size:12px;cursor:pointer}
 .bgbtn:hover{background:rgba(255,255,255,.22)}
-@media (max-width:620px){.bg3d .dots{width:70vw}.bg3d .wv{width:300%}@keyframes wvMove{to{transform:translate3d(-33.333%,0,0)}}}
-@media (prefers-reduced-motion:reduce){.bg3d .wv{animation:none}}
+.tab[aria-current="page"]{color:#1F2A4D}
+
+/* ================= dark mode ================= */
+html[data-theme="dark"]{color-scheme:dark;--bg:#0C1224;--card:#151E3C;--ink:#E7EBF7;--mute:#9AA6C6;--line:#27326A;--input:#26305A;--head:#DDE7FF;--navy:#2A3877;--navy2:#364A9E;
+  --redbg:#3C1F28;--red:#FF8E84;--amberbg:#3A2F15;--amber:#F2B450;--greenbg:#16342A;--green:#62D393;--bluebg:#1B2B59;--blue:#8EB5FF;--tealbg:#123639;--teal:#52D4CE;--violetbg:#2C2452;--violet:#BBA6F7;--greybg:#252B45;--grey:#A5ADC6;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35)}
+html[data-theme="dark"] body{background:radial-gradient(1100px 480px at 8% -8%,rgba(70,110,200,.30),transparent 62%),radial-gradient(900px 420px at 100% 0%,rgba(235,104,52,.07),transparent 60%),var(--bg);background-attachment:fixed}
+html[data-theme="dark"] .top{background:linear-gradient(135deg,#0F1733 0%,#17224A 55%,#1F2D63 100%)}
+html[data-theme="dark"] .foot{background:linear-gradient(180deg,#17224A,#0F1733)}
+html[data-theme="dark"] input,html[data-theme="dark"] select,html[data-theme="dark"] textarea{background:#101833;border-color:var(--line);color:var(--ink)}
+html[data-theme="dark"] input.y,html[data-theme="dark"] select.y,html[data-theme="dark"] textarea.y{background:var(--input);border-color:#3F4C8C}
+html[data-theme="dark"] input::placeholder{color:#7C88AD}
+html[data-theme="dark"] .btn.ghost{background:#1B2547;color:var(--head);border-color:var(--line)}
+html[data-theme="dark"] .btn.ghost:hover{background:#24305E}
+html[data-theme="dark"] .btn.danger{background:#1B2547;border-color:#6A3340}
+html[data-theme="dark"] .btn.danger:hover{background:var(--redbg)}
+html[data-theme="dark"] .tile{background:linear-gradient(160deg,#1B2650,#131B38)}
+html[data-theme="dark"] .tile .n{text-shadow:0 2px 0 rgba(0,0,0,.35)}
+html[data-theme="dark"] .tile::after{background:radial-gradient(180px circle at var(--mx,50%) var(--my,0%),rgba(140,203,242,.22),transparent 65%)}
+html[data-theme="dark"] .tablewrap,html[data-theme="dark"] .cal{background:var(--card)}
+html[data-theme="dark"] tr:nth-child(even) td{background:#18224A}
+html[data-theme="dark"] tbody tr:hover td{background:#223062}
+html[data-theme="dark"] .day{background:var(--card)}
+html[data-theme="dark"] .day:hover{background:#1B2650}
+html[data-theme="dark"] .day.out{background:#101831;color:#6B779B}
+html[data-theme="dark"] .list .date{background:linear-gradient(180deg,#202C5C,#17204A);box-shadow:0 2px 0 rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08)}
+html[data-theme="dark"] .list .go:hover{background:#202C5C}
+html[data-theme="dark"] .empty{background:#101833}
+html[data-theme="dark"] .banner{background:var(--amberbg);border-color:#6B5520;color:#F5D79A}
+html[data-theme="dark"] .banner.bad{background:var(--redbg);border-color:#7A3340;color:#FFC2BB}
+html[data-theme="dark"] .ht,html[data-theme="dark"] .statusbar{background:#0F1630;box-shadow:inset 0 2px 3px rgba(0,0,0,.45)}
+html[data-theme="dark"] .ht i{background:linear-gradient(180deg,#9AD6F6,#5BA7DB);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 2px 3px rgba(0,0,0,.4)}
+html[data-theme="dark"] .ht i.exp{background:linear-gradient(180deg,#5566A8,#41508C)}
+html[data-theme="dark"] .ht i.came{background:linear-gradient(180deg,#F58A5C,var(--orange))}
+html[data-theme="dark"] svg .grid{stroke:#27326A}
+html[data-theme="dark"] .legend i{background:#5566A8}
+html[data-theme="dark"] .legend i.came{background:var(--orange)}
+html[data-theme="dark"] dialog{box-shadow:0 20px 60px rgba(0,0,0,.65);border:1px solid var(--line)}
+html[data-theme="dark"] dialog::backdrop{background:rgba(3,6,18,.7)}
+html[data-theme="dark"] .dlg-f{border-color:var(--line)}
+html[data-theme="dark"] .toast{background:#2A3877}
+html[data-theme="dark"] .bg3d::before{background-image:linear-gradient(rgba(140,203,242,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(140,203,242,.07) 1px,transparent 1px)}
+html[data-theme="dark"] .bg3d .a{background:rgba(70,120,220,.32)}
+html[data-theme="dark"] .bg3d .b{background:rgba(120,90,220,.20)}
+html[data-theme="dark"] .bg3d .c{background:rgba(60,150,220,.22)}
+html[data-theme="dark"] .bg3d .d{background:rgba(235,104,52,.10)}
+html[data-theme="dark"] .tab[aria-current="page"]{background:#fff}
 
 </style>
 </head>
@@ -714,7 +752,7 @@ var App = (function () {
     else if (!READONLY && st.mode === "demo") banner = '<div class="banner"><b>Demo mode.</b> Your changes stay in this browser. To save to Google Sheets, connect it in Settings.<button class="btn small" data-act="tab" data-v="settings">Connect Google Sheets</button></div>';
     return '<header class="top"><div class="wrap"><div class="brand"><h1>' + esc(!st.settings.orgName || st.settings.orgName === STOCK_NAME || st.settings.orgName === OLD_BRAND ? BRAND : st.settings.orgName) + '</h1><small>Event Planner &amp; Calendar</small></div>' +
       '<nav class="tabs" aria-label="Main">' + tabs.map(function (t) { return '<button class="tab" data-act="tab" data-v="' + t[0] + '"' + (ui.view === t[0] ? ' aria-current="page"' : "") + ">" + t[1] + "</button>"; }).join("") + "</nav>" +
-      '<div class="sync"><span class="dot ' + dot + '"></span>' + esc(text) + (READONLY ? ' <button class="btn small ghost" data-act="retry" style="margin-left:6px">Refresh</button>' : "") + ' <button class="bgbtn" data-act="bg" title="Switch the background style">Style: ' + (bgName() === "waves" ? "Waves" : "Glow") + "</button></div></div></header>" +
+      '<div class="sync"><span class="dot ' + dot + '"></span>' + esc(text) + (READONLY ? ' <button class="btn small ghost" data-act="retry" style="margin-left:6px">Refresh</button>' : "") + ' <button class="bgbtn" data-act="bg" title="Switch the background style">Style: ' + (bgName() === "network" ? "Network" : "Glow") + '</button><button class="bgbtn" data-act="theme" title="Switch dark / light mode">' + (themeName() === "dark" ? "☀ Light" : "☾ Dark") + "</button></div></div></header>" +
       '<main><div class="wrap">' + banner + inner + '</div></main><footer class="foot"><div>Developed by the <b>Information Systems Society</b></div><div>Academic Year 2026–2027 | SLSU–Maasin City Campus</div></footer>';
   }
 
@@ -774,7 +812,7 @@ var App = (function () {
         }).join("") + (more > 0 ? '<span class="more">+' + more + " more events</span>" : "") + "</div>";
     }).join("");
     return '<div class="pagehead"><h2>Monthly View</h2><span class="sub">Click a day to see or add events</span></div>' +
-      '<div class="toolbar"><button class="btn ghost" data-act="prev" aria-label="Previous month">‹ Prev</button><h2 style="min-width:170px;text-align:center;color:var(--navy)">' + L.MONTHS[ui.calM] + " " + ui.calY + '</h2><button class="btn ghost" data-act="next" aria-label="Next month">Next ›</button>' +
+      '<div class="toolbar"><button class="btn ghost" data-act="prev" aria-label="Previous month">‹ Prev</button><h2 style="min-width:170px;text-align:center;color:var(--head)">' + L.MONTHS[ui.calM] + " " + ui.calY + '</h2><button class="btn ghost" data-act="next" aria-label="Next month">Next ›</button>' +
       '<button class="btn ghost" data-act="thismonth">Today</button><span class="grow"></span>' + (READONLY ? "" : '<button class="btn orange" data-act="add">+ Add event</button>') + '</div>' +
       '<div class="cal"><div class="cal-head">' + cal.heads.map(function (h) { return "<div>" + h + "</div>"; }).join("") + '</div><div class="cal-grid">' + cells + "</div></div>" +
       '<div class="legendrow">' + L.STATUSES.filter(function (s) { return s !== "Cancelled"; }).map(chip).join("") + '<span class="hint">Cancelled events are hidden here.</span></div>';
@@ -930,7 +968,8 @@ var App = (function () {
     switch (a) {
       case "tab": if (READONLY && el.dataset.v !== "dashboard" && el.dataset.v !== "monthly") break; ui.view = el.dataset.v; if (ui.view === "settings") ui.draft = null; draw(); window.scrollTo(0, 0); break;
       case "retry": S.refresh(); break;
-      case "bg": try { localStorage.setItem("seop.bg", bgName() === "waves" ? "glow" : "waves"); } catch (e) {} applyBg(); draw(); break;
+      case "bg": try { localStorage.setItem("seop.bg", bgName() === "network" ? "glow" : "network"); } catch (e) {} applyBg(); draw(); break;
+      case "theme": try { localStorage.setItem("seop.theme", themeName() === "dark" ? "light" : "dark"); } catch (e) {} applyTheme(); draw(); break;
       case "clearfilter": ui.filter = { committee: "", category: "" }; draw(); break;
       case "prev": ui.calM--; if (ui.calM < 0) { ui.calM = 11; ui.calY--; } draw(); break;
       case "next": ui.calM++; if (ui.calM > 11) { ui.calM = 0; ui.calY++; } draw(); break;
@@ -982,28 +1021,57 @@ var App = (function () {
     });
     document.addEventListener("pointerleave", function () { if (tilted) { rest(tilted); tilted = null; } }, true);
   }
-  /* background: "waves" (flowing lines) or "glow" (soft light + grid); decoration only */
-  var layer;
-  function wavePath(amp, y, fill) { // a smooth wave with 4 repeats; sliding it by half its width loops seamlessly
-    var d = "M0," + y + " Q180," + (y - amp) + " 360," + y, k;
-    for (k = 1; k < 8; k++) d += " T" + (360 * (k + 1)) + "," + y;
-    return d + (fill ? " L2880,300 L0,300 Z" : "");
-  }
-  function waveSvg(cls, paths) {
-    return '<svg class="wv ' + cls + '" viewBox="0 0 2880 300" preserveAspectRatio="none" aria-hidden="true">' + paths + "</svg>";
-  }
+  /* background: "network" (drifting connected dots, canvas) or "glow" (soft light + grid); decoration only */
+  var layer, net;
   function floaters() {
     layer = document.createElement("div"); layer.setAttribute("aria-hidden", "true");
-    layer.innerHTML = '<div class="dots"></div>' +
-      waveSvg("w4", '<path d="' + wavePath(70, 150, true) + '" fill="rgba(140,203,242,.16)"/>') +
-      waveSvg("w1", '<path d="' + wavePath(60, 140, true) + '" fill="rgba(140,203,242,.20)"/><path d="' + wavePath(60, 140, false) + '" fill="none" stroke="rgba(70,130,190,.45)" stroke-width="1.3"/>') +
-      waveSvg("w2", '<path d="' + wavePath(45, 150, true) + '" fill="rgba(31,42,77,.06)"/><path d="' + wavePath(45, 150, false) + '" fill="none" stroke="rgba(31,42,77,.22)" stroke-width="1.2"/>') +
-      waveSvg("w3", '<path d="' + wavePath(30, 160, false) + '" fill="none" stroke="rgba(140,203,242,.9)" stroke-width="1.6"/><path d="' + wavePath(30, 185, false) + '" fill="none" stroke="rgba(31,42,77,.14)" stroke-width="1"/>') +
-      "<i class=\"a\"></i><i class=\"b\"></i><i class=\"c\"></i><i class=\"d\"></i>";
-    document.body.insertBefore(layer, document.body.firstChild); applyBg();
+    layer.innerHTML = '<canvas class="net"></canvas><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i>';
+    document.body.insertBefore(layer, document.body.firstChild);
+    net = layer.querySelector("canvas"); applyBg(); netInit();
   }
-  function bgName() { try { return localStorage.getItem("seop.bg") === "glow" ? "glow" : "waves"; } catch (e) { return "waves"; } }
+  function bgName() { try { return localStorage.getItem("seop.bg") === "glow" ? "glow" : "network"; } catch (e) { return "network"; } }
   function applyBg() { if (layer) layer.className = "bg3d " + bgName(); }
+  function themeName() {
+    var t = null; try { t = localStorage.getItem("seop.theme"); } catch (e) {}
+    if (t === "dark" || t === "light") return t;
+    return window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  function applyTheme() { document.documentElement.setAttribute("data-theme", themeName()); }
+
+  function netInit() { // slowly drifting dots joined by thin lines; lines also reach toward the mouse
+    var ctx = net.getContext("2d"), W = 0, H = 0, dpr = 1, nodes = [], mouse = { x: -999, y: -999 }, last = 0, still = window.matchMedia && matchMedia("(prefers-reduced-motion:reduce)").matches;
+    function size() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight;
+      net.width = W * dpr; net.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.max(26, Math.min(72, Math.round(W * H / 20000))); if (W < 620) n = Math.min(n, 30);
+      while (nodes.length < n) nodes.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .22, vy: (Math.random() - .5) * .22, r: 1.1 + Math.random() * 1.7 });
+      nodes.length = n;
+    }
+    function frame(t) {
+      var dt = Math.min(40, t - last || 16); last = t;
+      var dark = document.documentElement.getAttribute("data-theme") === "dark";
+      var dot = dark ? "140,203,242" : "31,42,77", line = dark ? "140,203,242" : "60,100,160", i, j, a, b, d, al;
+      ctx.clearRect(0, 0, W, H);
+      for (i = 0; i < nodes.length; i++) {
+        a = nodes[i];
+        if (!still) { a.x += a.vx * dt * .06 * 16; a.y += a.vy * dt * .06 * 16; if (a.x < -20) a.x = W + 20; if (a.x > W + 20) a.x = -20; if (a.y < -20) a.y = H + 20; if (a.y > H + 20) a.y = -20; }
+        for (j = i + 1; j < nodes.length; j++) {
+          b = nodes[j]; d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < 150) { al = (1 - d / 150) * (dark ? .38 : .30); ctx.strokeStyle = "rgba(" + line + "," + al.toFixed(3) + ")"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+        }
+        d = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+        if (d < 170) { al = (1 - d / 170) * .55; ctx.strokeStyle = "rgba(" + (dark ? "170,220,250" : "235,104,52") + "," + al.toFixed(3) + ")"; ctx.lineWidth = 1.1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
+        ctx.fillStyle = "rgba(" + dot + "," + (dark ? .75 : .42) + ")"; ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, 6.2832); ctx.fill();
+      }
+      if (!still && !document.hidden) requestAnimationFrame(frame);
+    }
+    size(); requestAnimationFrame(frame);
+    addEventListener("resize", function () { size(); if (still) requestAnimationFrame(frame); });
+    addEventListener("pointermove", function (e) { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+    addEventListener("pointerleave", function () { mouse.x = mouse.y = -999; });
+    document.addEventListener("visibilitychange", function () { if (!document.hidden && !still) { last = 0; requestAnimationFrame(frame); } });
+    if (still) document.addEventListener("click", function () { requestAnimationFrame(frame); });
+  }
   function init() {
     root = $("#app");
     dlg = document.createElement("dialog"); document.body.appendChild(dlg);
@@ -1024,7 +1092,7 @@ var App = (function () {
       if (t.dataset && t.dataset.filter) { ui.filter[t.dataset.filter] = t.value; draw(); }
       else if (t.id === "sf") { ui.statusF = t.value; draw(); }
     });
-    tiltSetup(); floaters();
+    applyTheme(); tiltSetup(); floaters();
     S.subscribe(function () {
       if (ui.view === "settings" && document.activeElement && /^(url|key|s-)/.test(document.activeElement.id || "") && !S.state.busy && S.state.mode === lastMode) return;
       draw();

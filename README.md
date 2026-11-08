@@ -1,1 +1,3 @@
-# SLSU-MCC-Student-Org-Event-Planner
+## SLSU-MCC-Student-Org-Event-Planner
+
+Halo 

@@ -271,6 +271,23 @@ dialog::backdrop{backdrop-filter:blur(3px)}
 @media (max-width:620px){.bg3d .a{width:320px;height:320px}.bg3d .b{width:300px;height:300px}.bg3d .c,.bg3d .d{display:none}}
 @media (prefers-reduced-motion:reduce){.bg3d i{animation:none}}
 
+/* ================= background style switch: glow (above) or flowing waves ================= */
+.bg3d:not(.glow)::before,.bg3d:not(.glow) i{display:none}
+.bg3d .wv,.bg3d .dots{display:none}
+.bg3d.waves .wv,.bg3d.waves .dots{display:block}
+.bg3d .wv{position:absolute;left:0;bottom:0;width:200%;height:48vh;max-height:520px;animation:wvMove var(--d) linear infinite;will-change:transform}
+.bg3d .wv path{vector-effect:non-scaling-stroke}
+.bg3d .wv.w1{--d:70s;height:56vh;opacity:1}
+.bg3d .wv.w2{--d:52s;animation-direction:reverse;height:44vh}
+.bg3d .wv.w3{--d:40s;height:34vh}
+.bg3d .wv.w4{--d:90s;height:62vh}
+@keyframes wvMove{to{transform:translate3d(-50%,0,0)}}
+.bg3d .dots{position:absolute;right:0;top:0;width:46vw;height:46vh;background-image:radial-gradient(circle,rgba(31,42,77,.22) 1.3px,transparent 1.8px);background-size:24px 24px;-webkit-mask-image:radial-gradient(ellipse at 100% 0%,#000 0%,transparent 70%);mask-image:radial-gradient(ellipse at 100% 0%,#000 0%,transparent 70%)}
+.bgbtn{margin-left:6px;background:rgba(255,255,255,.12);color:#dfe5ff;border:1px solid rgba(140,203,242,.45);border-radius:999px;padding:3px 11px;font-size:12px;cursor:pointer}
+.bgbtn:hover{background:rgba(255,255,255,.22)}
+@media (max-width:620px){.bg3d .dots{width:70vw}.bg3d .wv{width:300%}@keyframes wvMove{to{transform:translate3d(-33.333%,0,0)}}}
+@media (prefers-reduced-motion:reduce){.bg3d .wv{animation:none}}
+
 </style>
 </head>
 <body>
@@ -697,7 +714,7 @@ var App = (function () {
     else if (!READONLY && st.mode === "demo") banner = '<div class="banner"><b>Demo mode.</b> Your changes stay in this browser. To save to Google Sheets, connect it in Settings.<button class="btn small" data-act="tab" data-v="settings">Connect Google Sheets</button></div>';
     return '<header class="top"><div class="wrap"><div class="brand"><h1>' + esc(!st.settings.orgName || st.settings.orgName === STOCK_NAME || st.settings.orgName === OLD_BRAND ? BRAND : st.settings.orgName) + '</h1><small>Event Planner &amp; Calendar</small></div>' +
       '<nav class="tabs" aria-label="Main">' + tabs.map(function (t) { return '<button class="tab" data-act="tab" data-v="' + t[0] + '"' + (ui.view === t[0] ? ' aria-current="page"' : "") + ">" + t[1] + "</button>"; }).join("") + "</nav>" +
-      '<div class="sync"><span class="dot ' + dot + '"></span>' + esc(text) + (READONLY ? ' <button class="btn small ghost" data-act="retry" style="margin-left:6px">Refresh</button>' : "") + "</div></div></header>" +
+      '<div class="sync"><span class="dot ' + dot + '"></span>' + esc(text) + (READONLY ? ' <button class="btn small ghost" data-act="retry" style="margin-left:6px">Refresh</button>' : "") + ' <button class="bgbtn" data-act="bg" title="Switch the background style">Style: ' + (bgName() === "waves" ? "Waves" : "Glow") + "</button></div></div></header>" +
       '<main><div class="wrap">' + banner + inner + '</div></main><footer class="foot"><div>Developed by the <b>Information Systems Society</b></div><div>Academic Year 2026–2027 | SLSU–Maasin City Campus</div></footer>';
   }
 
@@ -913,6 +930,7 @@ var App = (function () {
     switch (a) {
       case "tab": if (READONLY && el.dataset.v !== "dashboard" && el.dataset.v !== "monthly") break; ui.view = el.dataset.v; if (ui.view === "settings") ui.draft = null; draw(); window.scrollTo(0, 0); break;
       case "retry": S.refresh(); break;
+      case "bg": try { localStorage.setItem("seop.bg", bgName() === "waves" ? "glow" : "waves"); } catch (e) {} applyBg(); draw(); break;
       case "clearfilter": ui.filter = { committee: "", category: "" }; draw(); break;
       case "prev": ui.calM--; if (ui.calM < 0) { ui.calM = 11; ui.calY--; } draw(); break;
       case "next": ui.calM++; if (ui.calM > 11) { ui.calM = 0; ui.calY++; } draw(); break;
@@ -964,12 +982,28 @@ var App = (function () {
     });
     document.addEventListener("pointerleave", function () { if (tilted) { rest(tilted); tilted = null; } }, true);
   }
-  /* calm background: slow drifting colour glows over a faint grid (decoration only) */
-  function floaters() {
-    var layer = document.createElement("div"); layer.className = "bg3d"; layer.setAttribute("aria-hidden", "true");
-    ["a", "b", "c", "d"].forEach(function (k) { var el = document.createElement("i"); el.className = k; layer.appendChild(el); });
-    document.body.insertBefore(layer, document.body.firstChild);
+  /* background: "waves" (flowing lines) or "glow" (soft light + grid); decoration only */
+  var layer;
+  function wavePath(amp, y, fill) { // a smooth wave with 4 repeats; sliding it by half its width loops seamlessly
+    var d = "M0," + y + " Q180," + (y - amp) + " 360," + y, k;
+    for (k = 1; k < 8; k++) d += " T" + (360 * (k + 1)) + "," + y;
+    return d + (fill ? " L2880,300 L0,300 Z" : "");
   }
+  function waveSvg(cls, paths) {
+    return '<svg class="wv ' + cls + '" viewBox="0 0 2880 300" preserveAspectRatio="none" aria-hidden="true">' + paths + "</svg>";
+  }
+  function floaters() {
+    layer = document.createElement("div"); layer.setAttribute("aria-hidden", "true");
+    layer.innerHTML = '<div class="dots"></div>' +
+      waveSvg("w4", '<path d="' + wavePath(70, 150, true) + '" fill="rgba(140,203,242,.16)"/>') +
+      waveSvg("w1", '<path d="' + wavePath(60, 140, true) + '" fill="rgba(140,203,242,.20)"/><path d="' + wavePath(60, 140, false) + '" fill="none" stroke="rgba(70,130,190,.45)" stroke-width="1.3"/>') +
+      waveSvg("w2", '<path d="' + wavePath(45, 150, true) + '" fill="rgba(31,42,77,.06)"/><path d="' + wavePath(45, 150, false) + '" fill="none" stroke="rgba(31,42,77,.22)" stroke-width="1.2"/>') +
+      waveSvg("w3", '<path d="' + wavePath(30, 160, false) + '" fill="none" stroke="rgba(140,203,242,.9)" stroke-width="1.6"/><path d="' + wavePath(30, 185, false) + '" fill="none" stroke="rgba(31,42,77,.14)" stroke-width="1"/>') +
+      "<i class=\"a\"></i><i class=\"b\"></i><i class=\"c\"></i><i class=\"d\"></i>";
+    document.body.insertBefore(layer, document.body.firstChild); applyBg();
+  }
+  function bgName() { try { return localStorage.getItem("seop.bg") === "glow" ? "glow" : "waves"; } catch (e) { return "waves"; } }
+  function applyBg() { if (layer) layer.className = "bg3d " + bgName(); }
   function init() {
     root = $("#app");
     dlg = document.createElement("dialog"); document.body.appendChild(dlg);

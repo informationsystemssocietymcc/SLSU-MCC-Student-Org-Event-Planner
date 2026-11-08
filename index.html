@@ -33,7 +33,7 @@ h1,h2,h3{margin:0;line-height:1.2}
 .dot{width:9px;height:9px;border-radius:50%;background:#f0b429;display:inline-block}
 .dot.live{background:#3ecf8e}.dot.err{background:#ff6b5e}.dot.busy{background:#8ab4ff;animation:pulse 1s infinite}
 @keyframes pulse{50%{opacity:.35}}
-#app{min-height:100vh;display:flex;flex-direction:column}
+#app{min-height:100vh;display:flex;flex-direction:column;overflow-x:clip}
 main{padding:22px 0 44px;flex:1}
 .foot{background:var(--navy);color:#fff;border-top:4px solid var(--sky);text-align:center;padding:26px 16px 28px;font-size:14px;line-height:1.9}
 .foot b{font-weight:700}
@@ -192,6 +192,71 @@ dialog::backdrop{background:rgba(20,28,55,.5)}
   .toolbar .f{max-width:none;min-width:140px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+
+/* ================= subtle 3D layer ================= */
+body{background:radial-gradient(1100px 480px at 8% -8%,rgba(140,203,242,.30),transparent 62%),radial-gradient(900px 420px at 100% 0%,rgba(235,104,52,.07),transparent 60%),var(--bg);background-attachment:fixed}
+.top{position:relative;overflow:hidden;background:linear-gradient(135deg,#1A2447 0%,#243262 55%,#2C3B6B 100%);box-shadow:0 10px 30px rgba(20,28,60,.28)}
+.top .wrap{position:relative;z-index:1}
+.top::before,.top::after{content:"";position:absolute;pointer-events:none;border-radius:22%;background:linear-gradient(135deg,rgba(140,203,242,.30),rgba(140,203,242,.04));border:1px solid rgba(140,203,242,.28);box-shadow:inset 0 0 18px rgba(255,255,255,.06)}
+.top::before{width:150px;height:150px;right:6%;top:-70px;animation:floatA 9s ease-in-out infinite}
+.top::after{width:96px;height:96px;right:26%;bottom:-48px;animation:floatB 11s ease-in-out infinite}
+@keyframes floatA{0%,100%{transform:perspective(600px) rotateX(18deg) rotateY(-24deg) rotateZ(10deg) translateY(0)}50%{transform:perspective(600px) rotateX(-12deg) rotateY(22deg) rotateZ(-6deg) translateY(10px)}}
+@keyframes floatB{0%,100%{transform:perspective(600px) rotateX(-20deg) rotateY(18deg) rotateZ(-12deg)}50%{transform:perspective(600px) rotateX(16deg) rotateY(-20deg) rotateZ(8deg) translateY(-8px)}}
+.brand h1{text-shadow:0 2px 0 rgba(0,0,0,.25),0 8px 18px rgba(0,0,0,.3)}
+.tab{transition:background .15s,transform .12s}
+.tab:hover{transform:translateY(-1px)}
+.tab[aria-current="page"]{box-shadow:0 3px 0 rgba(140,203,242,.55),0 8px 16px rgba(0,0,0,.28)}
+.foot{background:linear-gradient(180deg,#243262,#1A2447);box-shadow:inset 0 14px 24px -16px rgba(0,0,0,.5)}
+
+/* cards + tiles: depth, lift and mouse tilt */
+.tile,.card{position:relative;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--lift,0));transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .3s;box-shadow:0 1px 1px rgba(31,42,77,.05),0 4px 8px rgba(31,42,77,.06),0 14px 28px rgba(31,42,77,.07)}
+.tile.tilt,.card.tilt{transition:transform .08s linear,box-shadow .3s;z-index:3;box-shadow:0 2px 2px rgba(31,42,77,.06),0 10px 18px rgba(31,42,77,.12),0 28px 48px rgba(31,42,77,.16)}
+.tile{overflow:hidden;background:linear-gradient(160deg,#fff 0%,#F7F8FC 100%)}
+.tile::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s;background:radial-gradient(180px circle at var(--mx,50%) var(--my,0%),rgba(140,203,242,.38),transparent 65%)}
+.tile.tilt::after{opacity:1}
+.tile .n{text-shadow:0 2px 0 rgba(31,42,77,.08)}
+
+/* buttons: raised, press down */
+.btn{box-shadow:0 3px 0 rgba(10,16,40,.28),0 8px 14px rgba(31,42,77,.14);transition:transform .08s,box-shadow .08s,background .15s}
+.btn.ghost{box-shadow:0 2px 0 rgba(31,42,77,.12),0 6px 10px rgba(31,42,77,.08)}
+.btn.orange{box-shadow:0 3px 0 #B7451A,0 8px 14px rgba(235,104,52,.28)}
+.btn.small{box-shadow:0 2px 0 rgba(10,16,40,.25)}
+.btn.ghost.small,.btn.danger.small{box-shadow:0 2px 0 rgba(31,42,77,.12)}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(10,16,40,.3)}
+.btn[disabled]{transform:none;box-shadow:none}
+
+/* charts: bars with depth */
+svg .bar{fill:url(#barg);filter:drop-shadow(0 3px 3px rgba(31,42,77,.28))}
+.ht{box-shadow:inset 0 2px 3px rgba(31,42,77,.12)}
+.ht i{background:linear-gradient(180deg,#3A4A82,var(--navy));box-shadow:inset 0 2px 0 rgba(255,255,255,.28),0 2px 3px rgba(31,42,77,.25)}
+.ht i.exp{background:linear-gradient(180deg,#d4dbf3,#b0bce6)}
+.ht i.came{background:linear-gradient(180deg,#F58A5C,var(--orange))}
+.statusbar{box-shadow:inset 0 2px 3px rgba(31,42,77,.15)}
+.statusbar span{box-shadow:inset 0 2px 0 rgba(255,255,255,.35)}
+
+/* calendar + lists */
+.cal{box-shadow:0 2px 2px rgba(31,42,77,.05),0 14px 30px rgba(31,42,77,.1)}
+.day{transition:background .15s,box-shadow .15s}
+.day:hover{box-shadow:inset 0 0 0 2px rgba(140,203,242,.7)}
+.evt{box-shadow:0 1px 0 rgba(31,42,77,.15),0 3px 6px rgba(31,42,77,.1);transition:transform .12s}
+.evt:hover{transform:translateY(-1px) scale(1.02)}
+.day.today .num{background:linear-gradient(145deg,#F58A5C,#D95A26);box-shadow:0 2px 0 #B7451A,0 5px 10px rgba(235,104,52,.35)}
+.list .date{box-shadow:0 2px 0 rgba(31,42,77,.1),inset 0 1px 0 #fff;background:linear-gradient(180deg,#fff,var(--bg))}
+.tablewrap{box-shadow:0 2px 2px rgba(31,42,77,.05),0 14px 30px rgba(31,42,77,.1)}
+tbody tr{transition:background .15s}
+tbody tr:hover td{background:#EEF6FC}
+
+/* dialogs pop in */
+dialog[open]{animation:pop .3s cubic-bezier(.2,.8,.2,1)}
+dialog::backdrop{backdrop-filter:blur(3px)}
+@keyframes pop{from{opacity:0;transform:perspective(800px) rotateX(-14deg) translateY(24px) scale(.96)}}
+
+/* page entrance: cards rise in one after another */
+#app.enter .tile,#app.enter .card,#app.enter .tablewrap,#app.enter .cal{animation:rise .6s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i,0) * 55ms)}
+@keyframes rise{from{opacity:0;transform:perspective(900px) translateY(26px) rotateX(10deg)}}
+@media (prefers-reduced-motion:reduce){.top::before,.top::after{animation:none}.tile,.card{transition:none}}
+@media (max-width:620px){.top::before{width:100px;height:100px}.top::after{display:none}}
 
 </style>
 </head>
@@ -536,7 +601,7 @@ var Charts = (function () {
     if (!max) return empty("No events in this plan year yet.");
     var step = niceStep(max), top = Math.ceil(max / step) * step;
     var W = 640, H = 230, L = 34, R = 8, T = 14, B = 28, pw = W - L - R, ph = H - T - B, bw = pw / data.length;
-    var s = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Events per month">';
+    var s = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Events per month"><defs><linearGradient id="barg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F8996D"/><stop offset=".5" stop-color="#EB6834"/><stop offset="1" stop-color="#C4501F"/></linearGradient></defs>';
     for (var v = 0; v <= top; v += step) {
       var y = T + ph - (v / top) * ph;
       s += '<line class="grid" x1="' + L + '" x2="' + (W - R) + '" y1="' + y + '" y2="' + y + '"/><text class="axis" x="' + (L - 6) + '" y="' + (y + 4) + '" text-anchor="end">' + v + "</text>";
@@ -582,10 +647,10 @@ var App = (function () {
   var MODE = "student"; // build step: "student" = read-only page
   var READONLY = MODE === "student";
   var OLD_BRAND = "SLSU MCC Student Calendar of Activities", STOCK_NAME = "My Student Organization";
-  var BRAND = READONLY ? "SLSU MCC Student Organizations Calendar of Activities" : OLD_BRAND;
+  var BRAND = "SLSU MCC Student Organizations Calendar of Activities";
   var esc = Charts.esc, L = Logic, S = Store;
   var ui = { view: "dashboard", filter: { committee: "", category: "" }, calY: 0, calM: 0, q: "", statusF: "", draft: null, typed: { url: "", key: "" } };
-  var root, dlg, toastTimer, pendingDel = null;
+  var root, dlg, toastTimer, pendingDel = null, lastView = null, enterTimer, tilted = null;
 
   function $(s, r) { return (r || document).querySelector(s); }
   function short(c) { var m = /\(([^)]+)\)\s*$/.exec(c || ""); return m ? m[1] : c; }
@@ -745,6 +810,11 @@ var App = (function () {
     if (id && /^(q|url|key|okey|s-)/.test(id)) { selS = active.selectionStart; selE = active.selectionEnd; } else id = null;
     var inner = ui.view === "dashboard" ? dashboard() : ui.view === "monthly" ? monthly() : ui.view === "planner" ? planner() : settings();
     root.innerHTML = frame(inner);
+    if (lastView !== ui.view) { // new screen: let the cards rise in one by one
+      lastView = ui.view; root.classList.add("enter");
+      Array.prototype.forEach.call(root.querySelectorAll(".tile,.card,.tablewrap,.cal"), function (el, i) { el.style.setProperty("--i", i); });
+      clearTimeout(enterTimer); enterTimer = setTimeout(function () { root.classList.remove("enter"); }, 1300);
+    }
     if (id) { var el = document.getElementById(id); if (el) { el.focus(); try { if (selS != null) el.setSelectionRange(selS, selE); } catch (e) {} } }
   }
 
@@ -864,6 +934,23 @@ var App = (function () {
     }
   }
 
+  /* cards and tiles lean toward the mouse (mouse only, off if the person prefers less motion) */
+  function tiltSetup() {
+    if (!window.matchMedia || !matchMedia("(hover:hover) and (pointer:fine)").matches || matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+    function rest(el) { ["--rx", "--ry", "--lift", "--mx", "--my"].forEach(function (k) { el.style.removeProperty(k); }); el.classList.remove("tilt"); }
+    document.addEventListener("pointermove", function (e) {
+      var el = ui.view === "dashboard" && e.target.closest ? e.target.closest(".tile,.card") : null;
+      if (tilted && tilted !== el) { rest(tilted); tilted = null; }
+      if (!el) return;
+      tilted = el;
+      var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5, max = el.classList.contains("tile") ? 7 : 2;
+      el.style.setProperty("--ry", (x * max * 2).toFixed(2) + "deg"); el.style.setProperty("--rx", (-y * max * 2).toFixed(2) + "deg");
+      el.style.setProperty("--lift", el.classList.contains("tile") ? "-5px" : "-3px");
+      el.style.setProperty("--mx", (e.clientX - r.left).toFixed(0) + "px"); el.style.setProperty("--my", (e.clientY - r.top).toFixed(0) + "px");
+      el.classList.add("tilt");
+    });
+    document.addEventListener("pointerleave", function () { if (tilted) { rest(tilted); tilted = null; } }, true);
+  }
   function init() {
     root = $("#app");
     dlg = document.createElement("dialog"); document.body.appendChild(dlg);
@@ -884,6 +971,7 @@ var App = (function () {
       if (t.dataset && t.dataset.filter) { ui.filter[t.dataset.filter] = t.value; draw(); }
       else if (t.id === "sf") { ui.statusF = t.value; draw(); }
     });
+    tiltSetup();
     S.subscribe(function () {
       if (ui.view === "settings" && document.activeElement && /^(url|key|s-)/.test(document.activeElement.id || "") && !S.state.busy && S.state.mode === lastMode) return;
       draw();

@@ -753,7 +753,7 @@ var App = (function () {
     return '<header class="top"><div class="wrap"><div class="brand"><h1>' + esc(!st.settings.orgName || st.settings.orgName === STOCK_NAME || st.settings.orgName === OLD_BRAND ? BRAND : st.settings.orgName) + '</h1><small>Event Planner &amp; Calendar</small></div>' +
       '<nav class="tabs" aria-label="Main">' + tabs.map(function (t) { return '<button class="tab" data-act="tab" data-v="' + t[0] + '"' + (ui.view === t[0] ? ' aria-current="page"' : "") + ">" + t[1] + "</button>"; }).join("") + "</nav>" +
       '<div class="sync"><span class="dot ' + dot + '"></span>' + esc(text) + (READONLY ? ' <button class="btn small ghost" data-act="retry" style="margin-left:6px">Refresh</button>' : "") + ' <button class="bgbtn" data-act="bg" title="Switch the background style">Style: ' + (bgName() === "network" ? "Network" : "Glow") + '</button><button class="bgbtn" data-act="theme" title="Switch dark / light mode">' + (themeName() === "dark" ? "☀ Light" : "☾ Dark") + "</button></div></div></header>" +
-      '<main><div class="wrap">' + banner + inner + '</div></main><footer class="foot"><div>Developed by the <b>Information Systems Society</b></div><div>Academic Year 2026–2027 | SLSU–Maasin City Campus</div></footer>';
+      '<main><div class="wrap">' + banner + inner + '</div></main><footer class="foot"><div>Developed by: <b> Solana A.C. and Dawis A. | Information Systems Society</b></div><div>Academic Year 2026–2027 | SLSU–Maasin City Campus</div></footer>';
   }
 
   /* ---------------- Dashboard ---------------- */

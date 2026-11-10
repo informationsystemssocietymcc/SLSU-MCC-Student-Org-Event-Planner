@@ -194,7 +194,7 @@ dialog::backdrop{background:rgba(20,28,55,.5)}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 
-/* ================= subtle 3D layer ================= */
+/*  subtle 3D layer  */
 body{background:radial-gradient(1100px 480px at 8% -8%,rgba(140,203,242,.30),transparent 62%),radial-gradient(900px 420px at 100% 0%,rgba(235,104,52,.07),transparent 60%),var(--bg);background-attachment:fixed}
 .top{position:relative;overflow:hidden;background:linear-gradient(135deg,#1A2447 0%,#243262 55%,#2C3B6B 100%);box-shadow:0 10px 30px rgba(20,28,60,.28)}
 .top .wrap{position:relative;z-index:1}
@@ -259,7 +259,7 @@ dialog::backdrop{backdrop-filter:blur(3px)}
 @media (prefers-reduced-motion:reduce){.top::before,.top::after{animation:none}.tile,.card{transition:none}}
 @media (max-width:620px){.top::before{width:100px;height:100px}.top::after{display:none}}
 
-/* ================= calm animated background: soft glow + faint grid ================= */
+/*  calm animated background: soft glow + faint grid  */
 .bg3d{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 #app{position:relative;z-index:1}
 .bg3d::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(31,42,77,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(31,42,77,.055) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.5) 55%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.5) 55%,transparent 100%)}
@@ -272,7 +272,7 @@ dialog::backdrop{backdrop-filter:blur(3px)}
 @media (max-width:620px){.bg3d .a{width:320px;height:320px}.bg3d .b{width:300px;height:300px}.bg3d .c,.bg3d .d{display:none}}
 @media (prefers-reduced-motion:reduce){.bg3d i{animation:none}}
 
-/* ================= background styles: network (canvas) / glow / plain ================= */
+/*  background styles: network (canvas) / glow / plain = */
 .bg3d canvas{display:none;position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 100%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 100%)}
 .bg3d.network canvas{display:block}
 .bg3d:not(.glow)::before,.bg3d:not(.glow) i{display:none}
@@ -280,7 +280,7 @@ dialog::backdrop{backdrop-filter:blur(3px)}
 .bgbtn:hover{background:rgba(255,255,255,.22)}
 .tab[aria-current="page"]{color:#1F2A4D}
 
-/* ================= dark mode ================= */
+/*  dark mode  */
 html[data-theme="dark"]{color-scheme:dark;--bg:#0C1224;--card:#151E3C;--ink:#E7EBF7;--mute:#9AA6C6;--line:#27326A;--input:#26305A;--head:#DDE7FF;--navy:#2A3877;--navy2:#364A9E;
   --redbg:#3C1F28;--red:#FF8E84;--amberbg:#3A2F15;--amber:#F2B450;--greenbg:#16342A;--green:#62D393;--bluebg:#1B2B59;--blue:#8EB5FF;--tealbg:#123639;--teal:#52D4CE;--violetbg:#2C2452;--violet:#BBA6F7;--greybg:#252B45;--grey:#A5ADC6;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35)}
@@ -340,7 +340,7 @@ var Logic = (function () {
   var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  /* ----- dates: "YYYY-MM-DD" text <-> day numbers (UTC, so no time-zone surprises) ----- */
+  /*  dates: "YYYY-MM-DD" text <-> day numbers (UTC, so no time-zone surprises)  */
   function isISO(s) { return /^\d{4}-\d{2}-\d{2}$/.test(s || "") && !isNaN(dayNum(s)) && iso(dayNum(s)) === s; }
   function dayNum(s) {
     var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || "");
@@ -374,7 +374,7 @@ var Logic = (function () {
     return ((h + 11) % 12 + 1) + ":" + m[2] + " " + (h < 12 ? "AM" : "PM");
   }
 
-  /* ----- one event's alert + days until ----- */
+  /*  one event's alert + days until  */
   function annotate(events, settings) {
     var range = planRange(settings), today = dayNum(asOf(settings)), soon = Number(settings.alertDays);
     if (!(soon >= 0)) soon = 7;
@@ -404,7 +404,7 @@ var Logic = (function () {
   function norm(s) { return String(s || "").trim().toLowerCase(); }
   function isRed(a) { return a === ALERT.MISSING || a === ALERT.RANGE || a === ALERT.DUP || a === ALERT.UPDATE; }
 
-  /* ----- everything the dashboard shows ----- */
+  /*  everything the dashboard shows  */
   function compute(events, settings, filter) {
     filter = filter || {};
     var all = annotate(events, settings);
@@ -445,7 +445,7 @@ var Logic = (function () {
              status: status, upcoming: upcoming, alerts: alerts, range: range, asOf: asOf(settings) };
   }
 
-  /* ----- the month grid (6 weeks, Sunday or Monday first) ----- */
+  /*  the month grid (6 weeks, Sunday or Monday first)  */
   function calendar(events, settings, year, month) { // month 0-11
     var first = Date.UTC(year, month, 1) / 86400000;
     var dow = new Date(first * 86400000).getUTCDay();
@@ -466,7 +466,7 @@ var Logic = (function () {
     return { cells: cells, heads: heads };
   }
 
-  /* ----- checking the form before saving ----- */
+  /*  checking the form before saving  */
   function validate(e) {
     var err = {};
     if (!String(e.name || "").trim()) err.name = "Give the event a name.";
@@ -556,7 +556,7 @@ var Store = (function () {
     return out;
   }
 
-  /* ----- starting up ----- */
+  /*  starting up  */
   function init() {
     var cfg = null;
     try { cfg = JSON.parse(lsGet(CFG_KEY) || "null"); } catch (e) {}
@@ -573,7 +573,7 @@ var Store = (function () {
   }
   function saveDemo() { lsSet(DEMO_KEY, JSON.stringify({ events: state.events, settings: state.settings })); }
 
-  /* ----- talking to Apps Script ----- */
+  /*  talking to Apps Script  */
   function validUrl(u) { return /^https:\/\/script\.google(usercontent)?\.com\//.test(u || ""); }
   function remote(action, payload) {
     var cfg = state.cfg, p;
@@ -627,7 +627,7 @@ var Store = (function () {
   function logout() { state.cfg = { url: state.cfg.url, key: "" }; lsSet(CFG_KEY, JSON.stringify(state.cfg)); return refresh(); }
   function disconnect() { lsSet(CFG_KEY, JSON.stringify({ url: "", key: "", demo: true })); state.cfg = { url: "", key: "" }; state.error = ""; loadDemo(); emit(); }
 
-  /* ----- changing data (screen updates first, the sheet catches up; undone if the sheet says no) ----- */
+  /*  changing data (screen updates first, the sheet catches up; undone if the sheet says no)  */
   function mutate(local, action, payload) {
     if (state.mode === "sheets" && !state.editor) return Promise.reject(new Error("Enter the officer password first."));
     var before = clone({ events: state.events, settings: state.settings });
@@ -737,7 +737,7 @@ var App = (function () {
     clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.hidden = true; }, bad ? 5000 : 2400);
   }
 
-  /* ---------------- frame (header + banner) ---------------- */
+  /*  frame (header + banner)  */
   function frame(inner) {
     var st = S.state, dot = st.busy ? "busy" : st.error ? "err" : st.mode === "sheets" ? "live" : "", text;
     if (st.busy) text = "Syncing…";
@@ -756,7 +756,7 @@ var App = (function () {
       '<main><div class="wrap">' + banner + inner + '</div></main><footer class="foot"><div>Developed by: <b> Solana A.C. and Dawis A. | Information Systems Society</b></div><div>Academic Year 2026–2027 | SLSU–Maasin City Campus</div></footer>';
   }
 
-  /* ---------------- Dashboard ---------------- */
+  /*  Dashboard  */
   function dashboard() {
     var st = S.state, c = L.compute(st.events, st.settings, ui.filter), t = c.tiles;
     var turn = t.turnout == null ? "–" : Math.round(t.turnout * 100) + "%";
@@ -799,7 +799,7 @@ var App = (function () {
       '<div class="grid2" style="margin-top:16px">' + (READONLY ? "" : '<section class="card"><h2>Events by committee</h2>' + Charts.bars(coms) + "</section>") + '<section class="card"><h2>Who came vs expected <small>by committee</small></h2>' + Charts.pairs(coms) + "</section></div>";
   }
 
-  /* ---------------- Monthly View ---------------- */
+  /*  Monthly View  */
   function monthly() {
     var st = S.state;
     if (!ui.calY) { var a = L.asOf(st.settings); ui.calY = +a.slice(0, 4); ui.calM = +a.slice(5, 7) - 1; }
@@ -846,7 +846,7 @@ var App = (function () {
       '<span class="grow"></span><button class="btn ghost" data-act="csv">Export CSV</button><button class="btn orange" data-act="add">+ Add event</button></div><div id="ptable">' + plannerTable() + "</div>";
   }
 
-  /* ---------------- Settings ---------------- */
+  /*  Settings  */
   function settings() {
     var st = S.state, d = ui.draft || (ui.draft = JSON.parse(JSON.stringify(st.settings))), live = st.mode === "sheets";
     var conn = '<section class="card"><h2>Connection <small>' + (live ? "Connected to Google Sheets" : "Demo mode") + "</small></h2>";
@@ -870,7 +870,7 @@ var App = (function () {
     return '<div class="pagehead"><h2>Settings</h2></div><div class="stack">' + conn + plan + lists + '<div><button class="btn orange" data-act="savesettings"' + (st.busy ? " disabled" : "") + ">Save settings</button> <button class=\"btn ghost\" data-act=\"revert\">Undo changes</button></div></div>";
   }
 
-  /* ---------------- drawing ---------------- */
+  /*  drawing  */
   var lastMode = "demo";
   function draw() {
     pendingDel = null; lastMode = S.state.mode;
@@ -886,7 +886,7 @@ var App = (function () {
     if (id) { var el = document.getElementById(id); if (el) { el.focus(); try { if (selS != null) el.setSelectionRange(selS, selE); } catch (e) {} } }
   }
 
-  /* ---------------- dialogs ---------------- */
+  /*  dialogs  */
   function openDialog(title, body, footer) {
     dlg.innerHTML = '<div class="dlg-h"><h3>' + title + '</h3><button data-act="close" aria-label="Close">×</button></div><div class="dlg-b">' + body + '</div><div class="dlg-f">' + footer + "</div>";
     if (!dlg.open) dlg.showModal();
@@ -945,7 +945,7 @@ var App = (function () {
     S.remove(id).then(function () { closeDialog(); toast("Event deleted."); }, function (e) { btn.disabled = false; toast("Not deleted: " + e.message, true); });
   }
 
-  /* ---------------- actions ---------------- */
+  /*  actions  */
   function csv() {
     var cols = [["Event Name", "name"], ["Category", "category"], ["Date", "date"], ["Start Time", "time"], ["Venue", "venue"], ["Committee", "committee"], ["Status", "status"], ["People Expected", "expected"], ["People Who Came", "came"], ["Notes", "notes"]];
     var q = function (v) { v = String(v == null ? "" : v); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; };
